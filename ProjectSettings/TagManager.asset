@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - arrow
+  - gym
+  - travel
+  - restaurants
+  - market
+  - rent
+  - services
+  - cinema
+  - gas
+  - vehicle
+  - entertainment
   layers:
   - Default
   - TransparentFX
