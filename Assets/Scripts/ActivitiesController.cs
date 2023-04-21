@@ -9,44 +9,86 @@ public class ActivitiesController : MonoBehaviour
     private RaycastHit hit;
     private GameObject viewedObject;
     private GameObject lastObject;
-    private GameObject progressMenu;
+    private GameObject menu;
+    private bool panel;
+    private bool interactableObject;
+
+    void Start()
+    {
+        menu = new GameObject();
+    }
 
     void Update()
     {
         try
         {
+
             progress();
+
         }
-        catch (System.Exception)
-        {}
+        catch 
+        { }
     }
 
     void progress()
     {
         if (Physics.Raycast(transform.position, transform.forward, out hit))
+        {
+            panel = hit.collider.CompareTag("panel");
+            interactableObject = hit.collider.CompareTag("Interactable");
+            /* lastObject = viewedObject;
+             viewedObject = hit.collider.gameObject;
+             progressMenu = hit.collider.gameObject.transform.Find("Canvas").gameObject;*/
+
+
+            if (interactableObject || panel)
             {
-                lastObject = viewedObject;
-                viewedObject = hit.collider.gameObject;
-                progressMenu = lastObject.transform.Find("image").gameObject;
-
-                if (lastObject == viewedObject)
+                timer += Time.deltaTime;
+                if (timer >= gazeTime)
                 {
-                    timer += Time.deltaTime;
-                    if (timer >= gazeTime)
-                    {
-                        progressMenu.SetActive(true);
+                    menu = hit.collider.gameObject.transform.Find("Panel").gameObject;
+                    menu.SetActive(true);
 
-                    }
+
                 }
-                else
-                {
-                    progressMenu.SetActive(false);
-                    timer = 0f;
-                }
+            }
+
+
+            else
+            {
+                StartCoroutine(corrutina(menu));
+                //hit.collider.gameObject.transform.Find("Canvas").gameObject.SetActive(false);
+                timer = 0f;
+
+            }
+
+        }
+        else
+        {
+            timer = 0f;
+        }
+    }
+    IEnumerator corrutina(GameObject progressMenu) 
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        try
+        {
+            if (hit.collider.CompareTag("panel"))
+            {
+                progressMenu.SetActive(true);
             }
             else
             {
+                progressMenu.SetActive(false);
                 timer = 0f;
             }
+        }
+        catch (System.Exception)
+        {
+            
+            
+        }
+
     }
 }

@@ -12,6 +12,18 @@ public class GazePointer : MonoBehaviour {
     private const float _maxDistance = 10;
     private GameObject _gazedAtObject = null;
 
+    public static GazePointer Instance;
+    [HideInInspector] public Vector3 hitPoint;
+    
+    private void Awake() 
+    {
+        if (Instance!= null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else{Instance = this;}
+    }
+
     private void Start() 
     {
         GazeManager.Instance.OnGazeSelection += GazeSelection;
@@ -19,7 +31,7 @@ public class GazePointer : MonoBehaviour {
 
     private void GazeSelection()
     {
-        _gazedAtObject?.SendMessage("OnPointerClick", null, SendMessageOptions.DontRequireReceiver);
+        _gazedAtObject?.SendMessage("OnPointerClickXR", null, SendMessageOptions.DontRequireReceiver);
     }
 
     public void Update()
@@ -29,18 +41,18 @@ public class GazePointer : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, _maxDistance))
         {
-            
+            hitPoint=hit.point;
             // GameObject detected in front of the camera.
             if (_gazedAtObject != hit.transform.gameObject)
             {
                 
                 // New GameObject.
-                _gazedAtObject?.SendMessage("OnPointerExit", null, SendMessageOptions.DontRequireReceiver);
+                _gazedAtObject?.SendMessage("OnPointerExitXR", null, SendMessageOptions.DontRequireReceiver);
                 _gazedAtObject = hit.transform.gameObject;
-                _gazedAtObject.SendMessage("OnPointerEnter", null, SendMessageOptions.DontRequireReceiver);
+                _gazedAtObject.SendMessage("OnPointerEnterXR", null, SendMessageOptions.DontRequireReceiver);
                 GazeManager.Instance.StartGazeSelection();
             }
-            if(hit.transform.TryGetComponent<IInteractable>(out var interactableObject)/*hit.transform.CompareTag(interactableTag)*/)
+            if(/*hit.transform.TryGetComponent<IInteractable>(out var interactableObject)*/hit.transform.CompareTag(interactableTag)||hit.transform.CompareTag("arrow"))
             {
                 //Activar puntero
                 //pointer.GetComponent<MeshRenderer>().enabled = true;
@@ -58,14 +70,14 @@ public class GazePointer : MonoBehaviour {
         else
         {
             // No GameObject detected in front of the camera.
-            _gazedAtObject?.SendMessage("OnPointerExit", null, SendMessageOptions.DontRequireReceiver);
+            _gazedAtObject?.SendMessage("OnPointerExitXR", null, SendMessageOptions.DontRequireReceiver);
             _gazedAtObject = null;
         }
 
         // Checks for screen touches.
         if (Google.XR.Cardboard.Api.IsTriggerPressed)
         {
-            _gazedAtObject?.SendMessage("OnPointerClick", null, SendMessageOptions.DontRequireReceiver);
+            _gazedAtObject?.SendMessage("OnPointerClickXR", null, SendMessageOptions.DontRequireReceiver);
         }
     }
 

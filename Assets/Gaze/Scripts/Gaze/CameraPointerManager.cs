@@ -14,6 +14,17 @@ public class CameraPointerManager : MonoBehaviour
     private float scaleSize = 0.025f;
     private const float _maxDistance = 10;
     private GameObject _gazedAtObject = null;
+    public static CameraPointerManager Instance;
+    [HideInInspector] public Vector3 hitPoint;
+    
+    private void Awake() 
+    {
+        if (Instance!= null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else{Instance = this;}
+    }
 
     private void Start() 
     {
@@ -27,7 +38,7 @@ public class CameraPointerManager : MonoBehaviour
 
     private void GazeSelection()
     {
-        _gazedAtObject?.SendMessage("OnPointerClick", null, SendMessageOptions.DontRequireReceiver);
+        _gazedAtObject?.SendMessage("OnPointerClickXR", null, SendMessageOptions.DontRequireReceiver);
     }
 
     public void Update()
@@ -37,15 +48,16 @@ public class CameraPointerManager : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, _maxDistance))
         {
+            hitPoint=hit.point;
             //print(hit.collider.name);
             // GameObject detected in front of the camera.
             if (_gazedAtObject != hit.transform.gameObject)
             {
                 //Cambio de evento segun objeto seleccionado.
                 // New GameObject.
-                _gazedAtObject?.SendMessage("OnPointerExit", null, SendMessageOptions.DontRequireReceiver);
+                _gazedAtObject?.SendMessage("OnPointerExitXR", null, SendMessageOptions.DontRequireReceiver);
                 _gazedAtObject = hit.transform.gameObject;
-                _gazedAtObject.SendMessage("OnPointerEnter", null, SendMessageOptions.DontRequireReceiver);
+                _gazedAtObject.SendMessage("OnPointerEnterXR", null, SendMessageOptions.DontRequireReceiver);
                 GazeManager.Instance.StartGazeSelection(); //Iniciar contador del Gaze
 
             }
@@ -65,14 +77,14 @@ public class CameraPointerManager : MonoBehaviour
         else
         {
             // No GameObject detected in front of the camera.
-            _gazedAtObject?.SendMessage("OnPointerExit", null, SendMessageOptions.DontRequireReceiver);
+            _gazedAtObject?.SendMessage("OnPointerExitXR", null, SendMessageOptions.DontRequireReceiver);
             _gazedAtObject = null;
         }
 
         // Checks for screen touches.
         if (Google.XR.Cardboard.Api.IsTriggerPressed)
         {
-            _gazedAtObject?.SendMessage("OnPointerClick", null, SendMessageOptions.DontRequireReceiver);
+            _gazedAtObject?.SendMessage("OnPointerClickXR", null, SendMessageOptions.DontRequireReceiver);
         }
     }
 
