@@ -9,12 +9,14 @@ public class fondoMutuo : MonoBehaviour
     [SerializeField] private ProgressController progress;
     [SerializeField] private TimeController month;
     [SerializeField] private GameObject cosecha;
+    [SerializeField] private Text inver;
+    [SerializeField] private Text gan;
     private int monto = 0;
     private int mesAnterior;
     private float ganancia;
     int mesInversion = 1;
     bool yaInvirtio;
-    float time;
+   // public float time;
     void Start()
     {
         cosecha.SetActive(false);
@@ -22,10 +24,10 @@ public class fondoMutuo : MonoBehaviour
     }
     void Update()
     {
-
+        //time += Time.deltaTime;
         if (yaInvirtio == true)
         {
-            time += Time.deltaTime;
+            
 
             if (month.month == mesAnterior)
             {
@@ -37,10 +39,11 @@ public class fondoMutuo : MonoBehaviour
             {
 
                 cosecha.SetActive(true);
-                if (time >= month.dur)
+                if (month.asd)
                 {
+                    
                     Ganancia();
-                    time = 0f;
+                    
 
                 }
 
@@ -60,6 +63,8 @@ public class fondoMutuo : MonoBehaviour
     void Ganancia()
     {
         ganancia += monto * 0.15f;
+        gan.text="Ganancia: "+ganancia.ToString();
+        //time = 0f;
 
 
     }
@@ -67,6 +72,7 @@ public class fondoMutuo : MonoBehaviour
     public void Invertir()
     {
         monto = 50;
+        inver.text = monto.ToString();
 
         if (yaInvirtio == false)
         {
@@ -80,6 +86,7 @@ public class fondoMutuo : MonoBehaviour
         {
             progress.Money -= monto;
             mesInversion = month.month;
+            mesAnterior = month.month;
 
         }
         else
@@ -96,6 +103,7 @@ public class fondoMutuo : MonoBehaviour
         mesAnterior = month.month;
         progress.Money += ganancia;
         ganancia = 0f;
+        gan.text="Ganancia: "+ganancia.ToString();
         cosecha.SetActive(false);
     }
 }

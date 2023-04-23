@@ -44,11 +44,11 @@ public class ServicesController : MonoBehaviour
     {
         if (month < 12f)
         {
-            fillBar.fillAmount += (1/12f)/2f;
+            fillBar.fillAmount += 1/12f;
        
-            progressInst.Services += 1/2f;
-            progressInst.Money -=25/2f;
-            month += 1/2f;
+            progressInst.Services += 1f;
+            progressInst.Money -=25f;
+            month += 1f;
         }
         
     }

@@ -7,9 +7,10 @@ public class TimeController : MonoBehaviour
     // Start is called before the first frame update
 
    
-    [SerializeField] private float monthTime;
+    [SerializeField] public float monthTime;
     [HideInInspector] public int month=1;
-     public float dur;
+    [HideInInspector] public float dur;
+    [HideInInspector] public bool asd;
     void Start()
     {
         
@@ -19,11 +20,12 @@ public class TimeController : MonoBehaviour
     void Update()
     {
         monthTime += Time.deltaTime;
-        if(monthTime>dur)
+        if(monthTime>=dur)
         {
+            asd=true;
             month++;
             monthTime=0f;
-        }
+        }else{asd=false;}
        
        
     }
