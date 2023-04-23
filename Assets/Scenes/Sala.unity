@@ -750,7 +750,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1297614537}
+      - m_Target: {fileID: 781347662}
         m_TargetAssemblyTypeName: fondoMutuo, Assembly-CSharp
         m_MethodName: Cosechar
         m_Mode: 1
@@ -1120,6 +1120,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.606915, y: 1.1164058, z: 0.74644667}
   m_Center: {x: -0.3089404, y: 0.55848783, z: 2.365288e-22}
+--- !u!114 &781347662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781347649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d989570213c4fb94bbbe4dc2f79c257e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progress: {fileID: 654198830}
+  month: {fileID: 654198829}
+  cosecha: {fileID: 515878794}
+  inver: {fileID: 912588071}
+  gan: {fileID: 480510731}
 --- !u!1001 &867456350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1635,7 +1652,7 @@ PrefabInstance:
     - target: {fileID: 1274929649143120834, guid: 6272731ec1f9595489b67072f07261b0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1297614537}
+      objectReference: {fileID: 781347662}
     - target: {fileID: 1274929649143120834, guid: 6272731ec1f9595489b67072f07261b0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1687,28 +1704,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1274929648212979528, guid: 6272731ec1f9595489b67072f07261b0, type: 3}
   m_PrefabInstance: {fileID: 1297614534}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1297614536 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1274929648054209472, guid: 6272731ec1f9595489b67072f07261b0, type: 3}
-  m_PrefabInstance: {fileID: 1297614534}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1297614537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1297614536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d989570213c4fb94bbbe4dc2f79c257e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  progress: {fileID: 654198830}
-  month: {fileID: 654198829}
-  cosecha: {fileID: 515878794}
-  inver: {fileID: 912588071}
-  gan: {fileID: 480510731}
 --- !u!850595691 &1337461119
 LightingSettings:
   m_ObjectHideFlags: 0
