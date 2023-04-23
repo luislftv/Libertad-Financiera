@@ -9,7 +9,7 @@ public class TimeController : MonoBehaviour
    
     [SerializeField] private float monthTime;
     [HideInInspector] public int month=1;
-     [SerializeField] private float dur;
+     public float dur;
     void Start()
     {
         
