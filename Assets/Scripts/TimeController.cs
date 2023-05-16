@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class TimeController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Clase encargada de manejar el tiempo y la forma en que transcurre en el simulador
 
    
     [SerializeField] public float monthTime;
     [HideInInspector] public int month=1;
     public float dur;
     [HideInInspector] public bool asd;
-    void Start()
-    {
-        
-    }
+ 
 
     // Update is called once per frame
     void Update()

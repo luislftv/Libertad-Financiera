@@ -36,9 +36,7 @@ public class ActivitiesController : MonoBehaviour
         {
             panel = hit.collider.CompareTag("panel");
             interactableObject = hit.collider.CompareTag("Interactable");
-            /* lastObject = viewedObject;
-             viewedObject = hit.collider.gameObject;
-             progressMenu = hit.collider.gameObject.transform.Find("Canvas").gameObject;*/
+           
 
 
             if (interactableObject || panel)
@@ -57,7 +55,7 @@ public class ActivitiesController : MonoBehaviour
             else
             {
                 StartCoroutine(corrutina(menu));
-                //hit.collider.gameObject.transform.Find("Canvas").gameObject.SetActive(false);
+             
                 timer = 0f;
 
             }

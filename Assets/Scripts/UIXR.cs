@@ -16,19 +16,19 @@ public class UIXR : MonoBehaviour
         xRcamera = GazePointer.Instance.gameObject.GetComponent<Camera>();
     }
 
-    public void OnPointerClickXR()
+    public void OnPointerClickXR() //Metodo que se ejecuta cuando pasa el tiempo de seleccion del gaze en un objeto con tag "Interactable"
     {
         PointerEventData pointerEvent = PlacePointer();
         ExecuteEvents.Execute(this.gameObject, pointerEvent, ExecuteEvents.pointerClickHandler);
     }
-    public void OnPointerEnterXR()
+    public void OnPointerEnterXR()//Metodo que se ejecuta cuando pasa el gaze por encima de en un objeto con tag "Interactable"
     {
         
         onXRPointerEnter?.Invoke();
         PointerEventData pointerEvent = PlacePointer();
         ExecuteEvents.Execute(this.gameObject, pointerEvent, ExecuteEvents.pointerEnterHandler);
     }
-     public void OnPointerExitXR()
+     public void OnPointerExitXR()//Metodo que se ejecuta cuando sale el gaze de en un objeto con tag "Interactable"
     {
         
         onXRPointerEnter?.Invoke();

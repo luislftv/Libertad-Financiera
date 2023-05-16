@@ -1,5 +1,5 @@
 using UnityEngine;
-
+// Clase para guardar progresos
 public class ProgressController : MonoBehaviour
 {
     [SerializeField] float money;
@@ -8,9 +8,10 @@ public class ProgressController : MonoBehaviour
     [SerializeField] float food;
     [SerializeField] float rent;
     [SerializeField] float services;
-    [SerializeField] float cinema;
+    [SerializeField] float enter;
     [SerializeField] float gas;
     [SerializeField] float vehicle;
+    [SerializeField] float clothes;
  
    
 
@@ -20,7 +21,8 @@ public class ProgressController : MonoBehaviour
     public float Food { get => food; set => food = value; }
     public float Rent { get => rent; set => rent = value; }
     public float Services { get => services; set => services = value; }
-    public float Cinema { get => cinema; set => cinema = value; }
+    public float Enter { get => enter; set => enter = value; }
     public float Gas { get => gas; set => gas = value; }
     public float Vehicle { get => vehicle; set => vehicle = value; }
+    public float Clothes { get => clothes; set => clothes = value; }
 }
