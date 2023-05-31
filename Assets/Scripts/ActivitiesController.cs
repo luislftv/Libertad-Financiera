@@ -32,7 +32,7 @@ public class ActivitiesController : MonoBehaviour
 
     void progress()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out hit))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 3.8f))
         {
             panel = hit.collider.CompareTag("panel");
             interactableObject = hit.collider.CompareTag("Interactable");

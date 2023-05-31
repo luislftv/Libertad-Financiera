@@ -8,7 +8,7 @@ using TMPro;
 
 public class MovementController : MonoBehaviour
 {
-    public float gazeTime = 2f;
+    [SerializeField] private GazeManager gazeTime;
     public float moveSpeed = 5f;
     private bool moving = false;
     public GameObject player;
@@ -21,14 +21,14 @@ public class MovementController : MonoBehaviour
 
     void Update()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out hit))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 3.5f))
         {
             if (hit.collider.CompareTag("arrow"))
             {
 
                 timer += Time.deltaTime;
                 targetPosition = hit.collider.gameObject.transform.position;
-                if (timer >= gazeTime)
+                if (timer >= gazeTime.timeForSelection)
                 {
                     moving = true;
                     MoveTowardsObject();

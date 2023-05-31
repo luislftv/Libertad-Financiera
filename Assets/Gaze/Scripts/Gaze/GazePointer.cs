@@ -9,7 +9,7 @@ public class GazePointer : MonoBehaviour {
     [Range(0, 1)][SerializeField] private float disPointerObj = 0.95f;
     private readonly string interactableTag = "Interactable";
     private float scaleSize = 0.025f;
-    private const float _maxDistance = 10;
+    [SerializeField] private float _maxDistance = 4;   
     private GameObject _gazedAtObject = null;
 
     public static GazePointer Instance;

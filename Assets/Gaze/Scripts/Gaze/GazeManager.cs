@@ -24,7 +24,7 @@ public class GazeManager : MonoBehaviour
     [SerializeField] private GameObject gazeBarCanvas;
     [SerializeField] Image fillIndicator;
     [Tooltip("Time in seg")]
-    [SerializeField] private float timeForSelection =2f;
+    [SerializeField] public float timeForSelection =2f;
 
     private float timeCounter;
     private float timeProggres;
