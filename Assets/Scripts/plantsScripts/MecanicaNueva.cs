@@ -5,60 +5,76 @@ using UnityEngine.EventSystems;
 
 public class MecanicaNueva : MonoBehaviour
 {
-    public GameObject objectToMove;
-    public GameObject guide;
-    public float movementSpeed = 5f;
-    public float errorThreshold = 0.1f;
-    private RaycastHit hit;
+    public float gazeTime = 2f; // Tiempo requerido de mirada para seleccionar el objeto
+    public float movementSpeed = 100f; // Velocidad de movimiento del objeto
+    private float timer;
+    private bool gazedAt;
+    private bool isSelected;
+    private Vector3 initialPosition;
 
-    private bool isMoving = false;
+    private void Start()
+    {
+        initialPosition = transform.position;
+    }
 
     private void Update()
     {
-        // Check if the gaze pointer is over the panel
-         if (Physics.Raycast(transform.position, transform.forward, out hit, 3.5f))
+        // Comprobar si la mirada está sobre el objeto
+        if (gazedAt && !isSelected)
         {
-            if (hit.collider.CompareTag("esfera"))
-            {
+            timer += Time.deltaTime;
 
-                timer += Time.deltaTime;
-                targetPosition = hit.collider.gameObject.transform.position;
-                if (timer >= gazeTime.timeForSelection)
-                {
-                    moving = true;
-                    MoveTowardsObject();
-                }
-            }
-            else
+            // Comprobar si el tiempo requerido de mirada ha sido alcanzado
+            if (timer >= gazeTime)
             {
-
-                timer = 0f;
+                // Seleccionar el objeto
+                isSelected = true;
+                OnObjectSelected();
             }
         }
-        else
+
+        // Mover el objeto si está seleccionado
+        if (isSelected)
         {
+            
+            // Obtener la posición del centro de la cámara
+            Vector3 cameraCenter = Camera.main.transform.position + Camera.main.transform.forward * 1.7f;
 
-            timer = 0f;
-        }
+            // Calcular la dirección del movimiento
+            Vector3 direction = cameraCenter - transform.position;
+            direction.z = 0f; // Opcionalmente, puedes bloquear el movimiento en el eje Y para que el objeto no suba o baje.
 
-        if (moving)
-        {
-            MoveTowardsObject();
-
-            // Comprobar si se ha llegado al objeto y detener el movimiento
-            if (player.transform.position == targetPosition)
-            {
-                moving = false;
-            }
+            // Mover el objeto en la dirección calculada
+            transform.position += direction * movementSpeed * Time.deltaTime;
         }
     }
 
-    private Vector3 CalculatePointerPosition(Vector3 p0, Vector3 p1, float t)
+    // Método que se llama cuando la mirada entra en contacto con el objeto
+    public void OnPointerEnterXR()
     {
-        float x = p0.x + t * (p1.x - p0.x);
-        float y = p0.y + t * (p1.y - p0.y);
-        float z = p0.z + t * (p1.z - p0.z);
+        gazedAt = true;
+      
+    }
 
-        return new Vector3(x, y, z);
+    // Método que se llama cuando la mirada sale de contacto con el objeto
+    public void OnPointerExitXR()
+    {
+        gazedAt = false;
+        timer = 0f;
+    }
+
+    // Método que se llama cuando el objeto es seleccionado
+    public void OnObjectSelected()
+    {
+        // Aquí puedes agregar cualquier código adicional que desees ejecutar cuando el objeto es seleccionado
+        Debug.Log("Objeto seleccionado");
+    }
+
+
+    // Método que se llama cuando el objeto es deseleccionado
+    public void DeselectObject()
+    {
+        isSelected = false;
+        transform.position = initialPosition; // Restaurar la posición inicial del objeto
     }
 }

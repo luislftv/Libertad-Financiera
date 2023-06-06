@@ -12,6 +12,7 @@ public class ActivitiesController : MonoBehaviour
     private GameObject menu;
     private bool panel;
     private bool interactableObject;
+    private bool esfera;
 
     void Start()
     {
@@ -36,10 +37,11 @@ public class ActivitiesController : MonoBehaviour
         {
             panel = hit.collider.CompareTag("panel");
             interactableObject = hit.collider.CompareTag("Interactable");
+            esfera = hit.collider.CompareTag("esfera");
            
 
 
-            if (interactableObject || panel)
+            if (interactableObject || panel || esfera)
             {
                 timer += Time.deltaTime;
                 if (timer >= gazeTime)
