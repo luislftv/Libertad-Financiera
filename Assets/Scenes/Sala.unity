@@ -2582,6 +2582,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8.204104, y: 12.513199, z: 0.0000016225454}
   m_Center: {x: 0.47583055, y: 1.6779085, z: -0.00000048141067}
+--- !u!1 &719709096 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3374968759787492279, guid: 934d72e2a509fa34faaa92b4bca57c77, type: 3}
+  m_PrefabInstance: {fileID: 1970683456}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &726610788 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1274929649062050282, guid: 6272731ec1f9595489b67072f07261b0, type: 3}
@@ -3008,7 +3013,7 @@ GameObject:
   - component: {fileID: 916769139}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: esfera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5099,6 +5104,22 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3374968759787492278, guid: 934d72e2a509fa34faaa92b4bca57c77, type: 3}
   m_PrefabInstance: {fileID: 1970683456}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1970683458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719709096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dd50465c4174ae46bb18cb5b52b81af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToMove: {fileID: 916769138}
+  guide: {fileID: 1697316254}
+  movementSpeed: 5
+  errorThreshold: 0.1
 --- !u!1 &1992803071 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7692427467984073490, guid: 5b9e8db1f0620e94bbf03058825f3bbd, type: 3}

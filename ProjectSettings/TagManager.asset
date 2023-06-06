@@ -17,6 +17,7 @@ TagManager:
   - entertainment
   - Interactable
   - panel
+  - esfera
   layers:
   - Default
   - TransparentFX
