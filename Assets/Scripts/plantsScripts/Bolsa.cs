@@ -8,12 +8,15 @@ public class Bolsa : MonoBehaviour
    
     [SerializeField] private ProgressController progress;
     [SerializeField] private TimeController month;
-    [SerializeField] private GameObject cosecha;
     [SerializeField] private GameObject invertir;
-    [SerializeField] private Text inver;
-    [SerializeField] private Text gan;
-    [SerializeField] private int plazo;
-    [SerializeField] private int monto;
+    [SerializeField] private MecanicaNueva veri; 
+    [SerializeField] private GameObject MiniJuego;
+    [SerializeField] private GameObject menu;
+    [SerializeField] private GameObject planta;
+    [SerializeField] private Text titulo;
+    [SerializeField] private AudioSource win;
+    [SerializeField] private AudioSource lose;
+  
     private float riesgo;
     
     private int mesCosecha;
@@ -22,101 +25,78 @@ public class Bolsa : MonoBehaviour
     bool yaInvirtio;
     bool yaCosecho;
     bool yaPuedeCosechar;
-   // public float time;
+   
     void Start()
     {
-        cosecha.SetActive(false);
-
+        MiniJuego.SetActive(false);
+        
+        
+        
     }
     void Update()
     {
-        
-        //time += Time.deltaTime;
-        if (yaInvirtio == true)
+        Debug.Log(veri.GaOv);
+       
+        if (veri.meta)
         {
-            if (month.month < mesCosecha)
-            {
-                cosecha.SetActive(false);
-            }
-            else if (yaCosecho == false)
-            {
-                cosecha.SetActive(true);
-                if(!yaPuedeCosechar)
-                {
-                    Ganancia();
-                }
-            }
-            else{cosecha.SetActive(false);}
+             
+            Ganancia();
+            GameOver();
+            veri.meta=false;
         }
+        if (veri.GaOv)
+        {
+             
+            perdida();
+            GameOver();
+            veri.GaOv=false;
+        }
+        
+ 
     }
 
-    // Update is called once per frame
-    public void OnPointerClickXR()
-    {
-        // panel.SetActive(true);
-    }
+    
     void Ganancia()
     {
-        var num = Random.Range(0,101);
-
-        if(plazo >0 && plazo <= 3)
-        {
-            riesgo = 50;
-        }
-        else if (plazo >3 && plazo <= 6)
-        {
-            riesgo = 40;
-        }
-        else if(plazo >6 && plazo <= 9)
-        {
-            riesgo = 30;
-        }
-        else{Debug.Log("Valor incorrecto");}
-
-         if (num < riesgo)
-        {
-            // Si el número es menor que la probabilidad de perder, se pierde
-            ganancia = 0f;
         
-        }
-        else
-        {
-            // Si el número es mayor o igual que la probabilidad de perder, se gana
-            ganancia = monto * (1.75f);
-        }        
-        gan.text="Ganancia: "+ganancia.ToString();
-        yaPuedeCosechar = true;
-        Debug.Log(ganancia);
-
-
+        progress.Money+=50;
+        spheres();
+        win.Play();
+    }
+    void perdida()
+    {
+        
+        progress.Money-=50;
+        lose.Play();
     }
 
     public void Invertir()
     {
         
-        inver.text = monto.ToString();
-
-        progress.Money -= monto;
-        mesInversion = month.month;
-        mesCosecha = month.month+plazo;
-        yaInvirtio = true;
-        yaCosecho = false;
-        yaPuedeCosechar = false;
-        invertir.SetActive(false);
-
-
-
+      
+    MiniJuego.SetActive(true);
+    menu.SetActive(false);
+    planta.SetActive(true);
 
     }
-    public void Cosechar()
+    public void GameOver()
     {
-        mesCosecha = month.month;
-        inver.text ="";
-        progress.Money += ganancia;
-        ganancia = 0f;
-        gan.text="Ganancia: "+ganancia.ToString();
-        cosecha.SetActive(false);
-        invertir.SetActive(true);
-        yaCosecho = true;
+        
+        this.enabled=true;  
+        MiniJuego.SetActive(false);
+        menu.SetActive(true);
+        spheres();
+        planta.SetActive(false);
+
+
     }
+
+    void spheres()
+    {
+        MiniJuego.transform.Find("image").transform.Find("n1").gameObject.SetActive(true);
+        MiniJuego.transform.Find("image").transform.Find("n2").gameObject.SetActive(true);
+        MiniJuego.transform.Find("image").transform.Find("n3").gameObject.SetActive(true);
+        MiniJuego.transform.Find("image").transform.Find("n4").gameObject.SetActive(true);
+    }
+
 }

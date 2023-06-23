@@ -8,7 +8,7 @@ public class AnimControllerNeve : MonoBehaviour
     // Start is called before the first frame update
    public void OnPointerClickXR()
     {
-        animator.Play("Nevecon|Action_Open_NeveconDoor_RconDoor_R");
+        animator.Play("Armature_Nevecon|Action_Open_NeveconDoor_R");
         
     }
      public void OnPointerExitXR()

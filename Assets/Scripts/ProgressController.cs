@@ -12,6 +12,8 @@ public class ProgressController : MonoBehaviour
     [SerializeField] float gas;
     [SerializeField] float vehicle;
     [SerializeField] float clothes;
+
+  
  
    
 
@@ -25,4 +27,10 @@ public class ProgressController : MonoBehaviour
     public float Gas { get => gas; set => gas = value; }
     public float Vehicle { get => vehicle; set => vehicle = value; }
     public float Clothes { get => clothes; set => clothes = value; }
+
+
+
+   
 }
+
+

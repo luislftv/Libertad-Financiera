@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ActivitiesController : MonoBehaviour
 {
-    public float gazeTime = 2f;
+    public GazeManager gazeManager;
+    
     private float timer;
     private RaycastHit hit;
     private GameObject viewedObject;
@@ -13,6 +14,7 @@ public class ActivitiesController : MonoBehaviour
     private bool panel;
     private bool interactableObject;
     private bool esfera;
+     private bool limite;
 
     void Start()
     {
@@ -33,18 +35,21 @@ public class ActivitiesController : MonoBehaviour
 
     void progress()
     {
+        
         if (Physics.Raycast(transform.position, transform.forward, out hit, 3.8f))
         {
+           
             panel = hit.collider.CompareTag("panel");
             interactableObject = hit.collider.CompareTag("Interactable");
             esfera = hit.collider.CompareTag("esfera");
+            limite = hit.collider.CompareTag("limite");
            
 
 
-            if (interactableObject || panel || esfera)
+            if (interactableObject || panel || esfera || limite)
             {
                 timer += Time.deltaTime;
-                if (timer >= gazeTime)
+                if (timer >= gazeManager.timeForSelection)
                 {
                     menu = hit.collider.gameObject.transform.Find("Panel").gameObject;
                     menu.SetActive(true);
@@ -52,8 +57,6 @@ public class ActivitiesController : MonoBehaviour
 
                 }
             }
-
-
             else
             {
                 StartCoroutine(corrutina(menu));

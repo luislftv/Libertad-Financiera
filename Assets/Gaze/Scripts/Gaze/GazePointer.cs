@@ -52,7 +52,7 @@ public class GazePointer : MonoBehaviour {
                 _gazedAtObject.SendMessage("OnPointerEnterXR", null, SendMessageOptions.DontRequireReceiver);
                 GazeManager.Instance.StartGazeSelection();
             }
-            if(/*hit.transform.TryGetComponent<IInteractable>(out var interactableObject)*/hit.transform.CompareTag(interactableTag)||hit.transform.CompareTag("arrow"))
+            if(hit.transform.CompareTag(interactableTag)||hit.transform.CompareTag("arrow"))
             {
                 //Activar puntero
                 //pointer.GetComponent<MeshRenderer>().enabled = true;

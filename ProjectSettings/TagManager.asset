@@ -18,6 +18,8 @@ TagManager:
   - Interactable
   - panel
   - esfera
+  - meta
+  - limite
   layers:
   - Default
   - TransparentFX

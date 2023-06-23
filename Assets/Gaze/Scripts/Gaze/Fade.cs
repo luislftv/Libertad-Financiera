@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class Fade : MonoBehaviour
 {
     [Header ("Fade")]
 	public Image imgFade;
+	public TextMeshProUGUI texto;
 	[Range (0f, 5f)] public float timeFade = 2;
 	[Range (0f, 5f)] public float delayFade = 1;
 
@@ -24,10 +26,12 @@ public class Fade : MonoBehaviour
 	private void Fade_Out ()
 	{
 		imgFade.CrossFadeAlpha (0, timeFade, true);
+		texto.CrossFadeAlpha (0, timeFade, true);
 	}
 
 	private void Fade_In ()
 	{
 		imgFade.CrossFadeAlpha (1, timeFade, true);
+		texto.CrossFadeAlpha (1, timeFade, true);
 	}
 }

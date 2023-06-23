@@ -13,11 +13,11 @@ AnimatorStateMachine:
     m_State: {fileID: -1683628392660536262}
     m_Position: {x: 310, y: 0, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -2606056048778988867}
-    m_Position: {x: 410, y: 140, z: 0}
+    m_State: {fileID: 2615497385890272353}
+    m_Position: {x: 410, y: 130, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 403017574450916603}
-    m_Position: {x: 400, y: 260, z: 0}
+    m_State: {fileID: -2562324094952244001}
+    m_Position: {x: 410, y: 210, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -28,14 +28,14 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -1683628392660536262}
---- !u!1102 &-2606056048778988867
+--- !u!1102 &-2562324094952244001
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Nevecon|Action_Open_NeveconDoor_RconDoor_R
+  m_Name: Armature_Nevecon|Action_Close_NeveconDoor_R
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -48,7 +48,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -78028516444888838, guid: aa3af802e7a00ab418b73638b6c9ab3f, type: 3}
+  m_Motion: {fileID: 7642376319586390514, guid: a41a443814e0cfb4f99c9ae2fc433e5a, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -108,14 +108,14 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1102 &403017574450916603
+--- !u!1102 &2615497385890272353
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Armature_Nevecon|Action_Close_NeveconDoor_R
+  m_Name: Armature_Nevecon|Action_Open_NeveconDoor_R
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -128,7 +128,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7642376319586390514, guid: aa3af802e7a00ab418b73638b6c9ab3f, type: 3}
+  m_Motion: {fileID: -78028516444888838, guid: a41a443814e0cfb4f99c9ae2fc433e5a, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

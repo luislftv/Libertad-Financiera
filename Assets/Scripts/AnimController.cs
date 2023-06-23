@@ -6,7 +6,7 @@ public class AnimController : MonoBehaviour
 {
     [SerializeField] Animator animator;
     // Start is called before the first frame update
-   public void OnPointerClickXR()
+   public void OnPointerEnterXR()
     {
         animator.Play("Armature_Armario|Action_Open_ClosetDoor_R");
     }

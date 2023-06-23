@@ -18,6 +18,10 @@ public class InversionInmobiliaria : MonoBehaviour
 
     [SerializeField] ProgressController PG;
     [SerializeField] TimeController TC;
+
+    [SerializeField] private GameObject regadera;
+    [SerializeField] private GameObject planta;
+    [SerializeField] private platsAnimatorScript plantaAnim;
     private float ganancia;
   public void BuyHouse()
   {
@@ -30,6 +34,8 @@ public class InversionInmobiliaria : MonoBehaviour
             
             inver.text = housePrice.ToString();
             compra.SetActive(false);
+            StartCoroutine(desRegadera());
+            plantaAnim.fase4();
         }
         else {Debug.Log("Dinero insuficiente");}
     }
@@ -49,6 +55,7 @@ public class InversionInmobiliaria : MonoBehaviour
         mesAnterior = TC.month;
         ganancia = 0f;
         gan.text="Ganancia: "+ganancia.ToString();
+        StartCoroutine(desRegadera());
         cosecha.SetActive(false);
     }
 
@@ -84,4 +91,11 @@ public class InversionInmobiliaria : MonoBehaviour
             }
         }
   }
+
+  IEnumerator desRegadera()
+    {   regadera.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        regadera.SetActive(false);
+
+    }
 }
