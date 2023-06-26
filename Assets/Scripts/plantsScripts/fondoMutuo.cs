@@ -68,7 +68,7 @@ public class fondoMutuo : MonoBehaviour
     void Ganancia()
     {
         ganancia += monto * 0.15f;
-        gan.text="Ganancia: "+ganancia.ToString();
+        gan.text="Ganancia: $"+ganancia.ToString();
         //time = 0f;
 
 
@@ -77,7 +77,7 @@ public class fondoMutuo : MonoBehaviour
     public void Invertir()
     {
         monto = 50;
-        inver.text = monto.ToString();
+        inver.text = "$"+monto.ToString();
 
         if (yaInvirtio == false)
         {
@@ -114,7 +114,7 @@ public class fondoMutuo : MonoBehaviour
             ganancia=0f;
             mesAnterior = month.month;
             progress.Money += ganancia;
-            gan.text="Ganancia: "+ganancia.ToString();
+            gan.text="Ganancia: $"+ganancia.ToString();
             plantaAnim.fase1Dead();
         }
         else
@@ -123,7 +123,7 @@ public class fondoMutuo : MonoBehaviour
             mesAnterior = month.month;
             progress.Money += ganancia;
              ganancia = 0f;
-            gan.text="Ganancia: "+ganancia.ToString();
+            gan.text="Ganancia: $"+ganancia.ToString();
             cosecha.SetActive(false);
             
         }

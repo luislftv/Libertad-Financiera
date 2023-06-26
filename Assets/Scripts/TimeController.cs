@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TimeController : MonoBehaviour
 {
@@ -15,7 +16,6 @@ public class TimeController : MonoBehaviour
     [HideInInspector] public bool asd;
  
     [SerializeField] public TextMeshProUGUI timeIndicator;
-    [SerializeField] public TextMeshProUGUI message;
     [SerializeField] private GameObject tutorial;
     [SerializeField] private GameObject messageGO;
     [SerializeField] private GameObject arrow1;
@@ -31,23 +31,37 @@ public class TimeController : MonoBehaviour
     [SerializeField]  RopaController ropa;
     [SerializeField]  ServicesController services;
     [SerializeField]  AudioSource gameOverSound;
+    Image img;
     bool go;
     bool sg;
+    float timefade;
+    public float fadeSpeed;
+    bool fadebool;
+    float alpha;
+    bool secMonth;
+    int monthAnt=1;
 
 
     private void Start() {
         messageGO.SetActive(false);
+        img = messageGO.GetComponent<Image>();
+        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+         
+
         if (go)
         {
             
             timeIndicator.text="";
-            message.text="El juego se reiniciará en 5 segundos";
-        }else if (sg)
+          
+        }
+        else if (sg)
         {
             tutorial.SetActive(false);
             arrow1.SetActive(true);
@@ -55,88 +69,119 @@ public class TimeController : MonoBehaviour
             arrow3.SetActive(true);
             monthTime += Time.deltaTime;
             timeIndicator.color=Color.white;
-            message.color=Color.white;
-            message.text="";
+            
         }
-        
+       
         if(monthTime>=dur)
         {
         
             
-            if(month != arriendo.month)
+            if(month > arriendo.month+1)
             {
                gameOver();
                StartCoroutine(restart());
             }
-            if(month != entretenimiento.month)
+            if(month > entretenimiento.month+1)
             {
                 gameOver();
                 StartCoroutine(restart());
             }
-            if(month != food.month)
+            if(month > food.month+1)
             {
                 gameOver();
                 StartCoroutine(restart());
             }
-            if(month != gym.month)
+            if(month > gym.month+1)
             {
                 gameOver();
                 StartCoroutine(restart());
             }
-            if(month != ropa.month)
+            if(month > ropa.month+1)
             {
                 gameOver();
                 StartCoroutine(restart());
             }
-            if(month != services.month)
+            if(month > services.month+1)
             {
                 gameOver();
                 StartCoroutine(restart());
             }
             asd=true;
+            monthAnt++;
             month++;
             monthTime=0f;
             progress.Money+=200;
             
         }
-        else if(monthTime>=(dur-10))
+        Debug.Log(monthAnt);
+         if(monthAnt==2)
+        {
+            secMonth=true;
+            monthAnt=1;
+        }
+        
+        else if(monthTime>=(dur-10)&&secMonth)
         {
             
-            timeIndicator.color=Color.red;
-            if(month != arriendo.month)
+            timefade+=Time.deltaTime;
+            if(timefade<=0.5)
             {
-                message.color=Color.red;
-                message.text="Tienes facturas pendientes por pagar, si no pagas pronto perderas";
+                fadebool=true;
+            }
+            else if (timefade>0.5f&&timefade<=1f)
+            {
+                fadebool=false;
+            }
+            else
+            {
+                timefade=0;
+            }
+          
+            if(fadebool)
+            {
+                alpha+=Time.deltaTime*6;
+                img.color = new Color(img.color.r, img.color.b, img.color.g, alpha);
+                //Debug.Log(aaa);
+                
+                
+            }
+            else
+            {
+                alpha-=Time.deltaTime*6;
+                img.color = new Color(img.color.r, img.color.b, img.color.g, alpha);
+                //Debug.Log(aaa);
+            }
+            
+            
+            if(month > arriendo.month)
+            {
+                timeIndicator.color=Color.red;
+                messageGO.SetActive(true);
+                
+            }
+            if(month > entretenimiento.month)
+            {
+               timeIndicator.color=Color.red;
                 messageGO.SetActive(true);
             }
-            if(month != entretenimiento.month)
+            if(month > food.month)
             {
-                message.color=Color.red;
-                message.text="Tienes facturas pendientes por pagar, si no pagas pronto perderas";
+                timeIndicator.color=Color.red;
                 messageGO.SetActive(true);
             }
-            if(month != food.month)
+            if(month > gym.month)
             {
-                message.color=Color.red;
-                message.text="Tienes facturas pendientes por pagar, si no pagas pronto perderas";
+               timeIndicator.color=Color.red;
                 messageGO.SetActive(true);
             }
-            if(month != gym.month)
+            if(month > ropa.month)
             {
-                message.color=Color.red;
-                message.text="Tienes facturas pendientes por pagar, si no pagas pronto perderas";
+                timeIndicator.color=Color.red;
                 messageGO.SetActive(true);
             }
-            if(month != ropa.month)
+            if(month > services.month)
             {
-                message.color=Color.red;
-                message.text="Tienes facturas pendientes por pagar, si no pagas pronto perderas";
-                messageGO.SetActive(true);
-            }
-            if(month != services.month)
-            {
-                message.color=Color.red;
-                message.text="Tienes facturas pendientes por pagar, si no pagas pronto perderas";
+               timeIndicator.color=Color.red;
                 messageGO.SetActive(true);
             }
             
@@ -146,6 +191,8 @@ public class TimeController : MonoBehaviour
        
        
     }
+
+    
 
     void gameOver()
     {

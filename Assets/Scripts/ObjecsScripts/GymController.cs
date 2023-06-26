@@ -8,6 +8,7 @@ public class GymController : MonoBehaviour
     public ProgressController progressInst;
     [SerializeField] public Image fillBar;
     [SerializeField] private TimeController scriptMonth;
+    [SerializeField] private Image progressBar;
     
     public Text imagen;
      [HideInInspector] public  float month;
@@ -28,11 +29,17 @@ public class GymController : MonoBehaviour
          MostrarPuntaje();
          if(month <scriptMonth.month)
          {
-            
+            if(fillBar.fillAmount ==0f)
+            {
+                progressBar.color = new Color(255f/255,127f/255,0,255);
+                Debug.Log("asd");
+            }
+            else{progressBar.color=new Color(1,1,1,1);}
             fillBar.color= new Color(255,0,0,255);
          }
          else
          {
+            progressBar.color=new Color(1,1,1,1);
             fillBar.color= new Color(255,255,255,255);
          }
     }

@@ -35,8 +35,7 @@ public class Bolsa : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(veri.GaOv);
-       
+      
         if (veri.meta)
         {
              

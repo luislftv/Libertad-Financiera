@@ -45,7 +45,7 @@ public class InversionInmobiliaria : MonoBehaviour
   void Ganancia()
     {
         ganancia += alquiler;
-        gan.text="Ganancia: "+ganancia.ToString();
+        gan.text="Ganancia: $"+ganancia.ToString();
         //time = 0f;
 
     }
@@ -54,14 +54,14 @@ public class InversionInmobiliaria : MonoBehaviour
         PG.Money += ganancia;
         mesAnterior = TC.month;
         ganancia = 0f;
-        gan.text="Ganancia: "+ganancia.ToString();
+        gan.text="Ganancia: $"+ganancia.ToString();
         StartCoroutine(desRegadera());
         cosecha.SetActive(false);
     }
 
     void Start()
     {
-        inver.text="Inversion: "+housePrice.ToString();
+        inver.text="Inversion: $"+housePrice.ToString();
     }
 
   void Update() 
