@@ -35,7 +35,14 @@ public class GymController : MonoBehaviour
                 Debug.Log("asd");
             }
             else{progressBar.color=new Color(1,1,1,1);}
-            fillBar.color= new Color(255,0,0,255);
+            if(month >scriptMonth.month)
+            {
+                 fillBar.color= new Color(255f/255,127f/255,0,255);
+            }
+            if(month <scriptMonth.month)
+            {
+                 fillBar.color= new Color(255,0,0,255);
+            }
          }
          else
          {

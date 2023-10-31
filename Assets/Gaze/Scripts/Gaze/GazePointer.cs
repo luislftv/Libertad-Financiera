@@ -5,11 +5,11 @@ using System.Collections;
 public class GazePointer : MonoBehaviour {
 
     [SerializeField] private GameObject pointer;
-    [SerializeField] private float maxDistancePointer = 9.0f;
-    [Range(0, 1)][SerializeField] private float disPointerObj = 0.95f;
+    public float maxDistancePointer;
+    [Range(0, 1)][SerializeField] private float disPointerObj;
     private readonly string interactableTag = "Interactable";
     private float scaleSize = 0.025f;
-    [SerializeField] private float _maxDistance = 4;   
+    public float _maxDistance;   
     private GameObject _gazedAtObject = null;
 
     public static GazePointer Instance;
@@ -49,7 +49,7 @@ public class GazePointer : MonoBehaviour {
                 // New GameObject.
                 _gazedAtObject?.SendMessage("OnPointerExitXR", null, SendMessageOptions.DontRequireReceiver);
                 _gazedAtObject = hit.transform.gameObject;
-                _gazedAtObject.SendMessage("OnPointerEnterXR", null, SendMessageOptions.DontRequireReceiver);
+                _gazedAtObject?.SendMessage("OnPointerEnterXR", null, SendMessageOptions.DontRequireReceiver);
                 GazeManager.Instance.StartGazeSelection();
             }
             if(hit.transform.CompareTag(interactableTag)||hit.transform.CompareTag("arrow"))

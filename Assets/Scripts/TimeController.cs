@@ -16,6 +16,7 @@ public class TimeController : MonoBehaviour
     [HideInInspector] public bool asd;
  
     [SerializeField] public TextMeshProUGUI timeIndicator;
+    [SerializeField] public TextMeshProUGUI money;
     [SerializeField] private GameObject tutorial;
     [SerializeField] private GameObject messageGO;
     [SerializeField] private GameObject arrow1;
@@ -31,6 +32,7 @@ public class TimeController : MonoBehaviour
     [SerializeField]  RopaController ropa;
     [SerializeField]  ServicesController services;
     [SerializeField]  AudioSource gameOverSound;
+    [SerializeField]  GazePointer gazePointer;
     Image img;
     bool go;
     bool sg;
@@ -40,9 +42,12 @@ public class TimeController : MonoBehaviour
     float alpha;
     bool secMonth;
     int monthAnt=1;
-
+    public GameObject credits;
 
     private void Start() {
+
+        timeIndicator.enabled = false;
+        money.enabled = false;
         messageGO.SetActive(false);
         img = messageGO.GetComponent<Image>();
         
@@ -53,8 +58,8 @@ public class TimeController : MonoBehaviour
     void Update()
     {
 
-         
 
+        money.text = progress.Money.ToString();
         if (go)
         {
             
@@ -63,11 +68,15 @@ public class TimeController : MonoBehaviour
         }
         else if (sg)
         {
+            gazePointer.maxDistancePointer=4.5f;
+            gazePointer._maxDistance=4.5f;
             tutorial.SetActive(false);
             arrow1.SetActive(true);
             arrow2.SetActive(true);
             arrow3.SetActive(true);
             monthTime += Time.deltaTime;
+            money.enabled = true;
+            timeIndicator.enabled = true;
             timeIndicator.color=Color.white;
             
         }
@@ -215,7 +224,7 @@ public class TimeController : MonoBehaviour
         yield return new WaitForSeconds(5f);
         
         
-        SceneManager.LoadScene("Sala");
+        credits.SetActive(true);
         
     }
 }
